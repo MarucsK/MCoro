@@ -24,6 +24,7 @@
 #include <co_async/generic/when_any.hpp>
 #include <co_async/iostream/bytes_buffer.hpp>
 #include <co_async/iostream/file_stream.hpp>
+#include <co_async/iostream/stdio_stream.hpp>
 #include <co_async/iostream/stream_base.hpp>
 #include <co_async/platform/error_handling.hpp>
 #include <co_async/platform/fs.hpp>
