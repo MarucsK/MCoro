@@ -1,0 +1,29 @@
+#include <co_async/std.hpp>
+#include <co_async/co_async.hpp>
+
+using namespace Marcus;
+using namespace std::literals;
+
+std::atomic<uint32_t> flag{1};
+
+static Task<Expected<>> func() {
+    (void)co_await co_sleep(1000ms);
+    debug(), 3;
+    flag.fetch_add(1);
+    futex_notify(&flag);
+    debug(), 4;
+    co_return {};
+}
+
+static Task<Expected<>> amain() {
+    co_spawn(func());
+    debug(), 1;
+    co_await co_await futex_wait(&flag, 1);
+    debug(), 2;
+    co_return {};
+}
+
+int main() {
+    co_main(amain());
+    return 0;
+}
