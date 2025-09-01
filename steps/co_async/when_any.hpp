@@ -96,8 +96,8 @@ when_any(const std::vector<T, Alloc> &tasks) {
     {
         std::vector<ReturnPreviousTask, Alloc> taskArray(alloc);
         taskArray.reserve(tasks.size());
-        for (auto &task: tasks) {
-            taskArray.push_back(whenAllHelper(task, control, result));
+        for (std::size_t i = 0; i < tasks.size(); ++i) {
+            taskArray.push_back(whenAnyHelper(tasks[i], control, result, i));
         }
         co_await WhenAnyAwaiter(control, taskArray);
     }
