@@ -34,7 +34,7 @@ struct sockaddr_in addr = {
         },
 };
 
-const char *(*(tests[]))() = {
+const char *(*tests[])() = {
     P(nop),
     P(read, 0, nullptr, 0, 0),
     P(write, 0, nullptr, 0, 0),
