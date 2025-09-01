@@ -10,8 +10,8 @@ namespace Marcus {
 
 struct Semaphore {
 private:
-    FutexAtomic<std::uint32_t> mCounter;
-    const std::uint32_t mMaxCount;
+    FutexAtomic<std::uint32_t> mCounter; /* Current available resource count. */
+    const std::uint32_t mMaxCount;       /* Maximum value.*/
 
     static constexpr std::uint32_t kAcquireMask = 1;
     static constexpr std::uint32_t kReleaseMask = 2;
